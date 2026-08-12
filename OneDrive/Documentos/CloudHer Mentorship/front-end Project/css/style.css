@@ -1,0 +1,385 @@
+:root {
+  --navy: #0a1e3f;
+  --deep-blue: #0d2b53;
+  --blue: #1b4d9b;
+  --bright-blue: #2f6fdb;
+  --sky-blue: #5aa1f2;
+  --pale-blue: #cfe3ff;
+  --white: #ffffff;
+  --black: #0a0a0a;
+  --max-width: 900px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', system-ui, -apple-system, Arial, sans-serif;
+  background: linear-gradient(180deg, var(--navy) 0%, var(--deep-blue) 45%, var(--navy) 100%);
+  color: var(--pale-blue);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ---------- Animated background icons ---------- */
+.bg-icons {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bg-icon {
+  position: absolute;
+  color: rgba(90, 161, 242, 0.18);
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-weight: 700;
+  white-space: nowrap;
+  animation-name: floatUp;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  user-select: none;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(110vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-15vh) rotate(20deg);
+    opacity: 0;
+  }
+}
+
+/* ---------- Layout helpers ---------- */
+header, main, footer {
+  position: relative;
+  z-index: 1;
+}
+
+.section {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 5rem 1.5rem;
+}
+
+.section.alt {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+}
+
+.section h2 {
+  color: var(--white);
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid var(--bright-blue);
+  padding-left: 0.75rem;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(90, 161, 242, 0.25);
+  border-radius: 14px;
+  padding: 2rem;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.card p {
+  line-height: 1.8;
+  color: var(--pale-blue);
+  margin: 0;
+}
+
+/* ---------- Header / Nav ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(10, 30, 63, 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(90, 161, 242, 0.25);
+}
+
+.navbar {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--white);
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+
+.logo span {
+  color: var(--sky-blue);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  color: var(--pale-blue);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  position: relative;
+}
+
+.nav-links a:hover {
+  color: var(--white);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: var(--sky-blue);
+  transition: width 0.25s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.nav-toggle span {
+  width: 24px;
+  height: 2px;
+  background: var(--white);
+  border-radius: 2px;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 1.5rem;
+}
+
+.hero-content {
+  max-width: 700px;
+}
+
+.avatar-wrap {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 2rem;
+}
+
+.avatar-ring {
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, var(--bright-blue), var(--sky-blue), var(--white), var(--bright-blue));
+  animation: spin 6s linear infinite;
+  filter: blur(2px);
+  opacity: 0.8;
+}
+
+.avatar-placeholder {
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, var(--sky-blue), var(--blue) 60%, var(--navy) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 3px solid var(--white);
+  animation: floatAvatar 4s ease-in-out infinite;
+  box-shadow: 0 0 30px rgba(90, 161, 242, 0.6);
+}
+
+.avatar-placeholder span {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 1px;
+}
+
+.avatar-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes floatAvatar {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.hero h1 {
+  color: var(--white);
+  font-size: 2.4rem;
+  margin: 0 0 0.75rem;
+}
+
+.highlight {
+  color: var(--sky-blue);
+}
+
+.tagline {
+  color: var(--pale-blue);
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.scroll-cta {
+  display: inline-block;
+  color: var(--white);
+  background: var(--bright-blue);
+  padding: 0.7rem 1.5rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.scroll-cta:hover {
+  background: var(--sky-blue);
+  transform: translateY(-2px);
+}
+
+/* ---------- Mentor section ---------- */
+.mentor-card {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.mentor-avatar {
+  flex-shrink: 0;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--white), var(--pale-blue));
+  color: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.6rem;
+  border: 3px solid var(--sky-blue);
+}
+
+.mentor-info h3 {
+  color: var(--white);
+  margin: 0 0 0.25rem;
+  font-size: 1.4rem;
+}
+
+.mentor-role {
+  color: var(--sky-blue);
+  font-weight: 600;
+  margin: 0 0 0.75rem;
+}
+
+/* ---------- Hopes list ---------- */
+.hopes-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  line-height: 2;
+  color: var(--pale-blue);
+}
+
+.hopes-list li::marker {
+  color: var(--sky-blue);
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--pale-blue);
+  border-top: 1px solid rgba(90, 161, 242, 0.25);
+  background: rgba(0, 0, 0, 0.25);
+}
+
+/* ---------- Scroll reveal ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 720px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--navy);
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    display: none;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .hero h1 {
+    font-size: 1.9rem;
+  }
+}
