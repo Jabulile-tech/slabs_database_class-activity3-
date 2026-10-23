@@ -1,7 +1,7 @@
 # Author: Jabulile Gamede
 
 **PART 1: Management Levels & Information Flow**
-![pyramid](pyramid.png)
+![pyramid](images/pyramid.png)
 
 **Tier 1:**
 
